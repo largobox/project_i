@@ -2,15 +2,12 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const surveStatic = require('./utils/surveStatic');
+const isRequestHandled = require('./utils/isRequestHandled');
 
 const server = http.createServer();
 
 server.on('request', (req, res) => {
-	const { url } = req;
-	const extname = String(path.extname(url)).toLowerCase();
-	const isStaticFilesRequest = '.js' || '.html' === extname;
-
-	if (isStaticFilesRequest) {
+	if (isRequestHandled(req)) {
 		surveStatic(req, res);
 		return;
 	}

@@ -11,6 +11,11 @@ function surveStatic (request, response) {
 		filePath = path.join(__dirname, `./${url}`);
 	}
 
+	if (url === '/bundle.js') {
+		// ToDo. Need cleaner path
+		filePath = path.join(__dirname, '..', '..', '..', 'client/dist', url);
+	}
+
 	const extname = String(path.extname(filePath)).toLowerCase();
 	let contentType = 'text/html';
 	const mimeTypes = {

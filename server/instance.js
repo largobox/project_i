@@ -1,12 +1,14 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+
 const surveStatic = require('./utils/surveStatic');
 const isRequestHandled = require('./utils/isRequestHandled');
+const initializeSocketIOServer = require('./utils/initializeSocketIOServer');
 
-const server = http.createServer();
+const httpServer = http.createServer();
 
-server.on('request', (req, res) => {
+httpServer.on('request', (req, res) => {
 	if (isRequestHandled(req)) {
 		surveStatic(req, res);
 		return;
@@ -15,6 +17,8 @@ server.on('request', (req, res) => {
 	res.end('Unhandled request');
 });
 
-server.listen(3000, () => {
-	console.log('I`m listen 3000 port')
+httpServer.listen(3000, () => {
+	console.log('I`m listen 3000 port');
+
+	initializeSocketIOServer(httpServer);
 });

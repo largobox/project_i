@@ -7,14 +7,13 @@ let direction = 'increase'; // 'decrease' or 'increase'
 function decreaseConnection() {
 	const lastSocket = socketArr.pop();
 
-	lastSocket.disconnect();	
+	lastSocket.close();	
 }
 
 function increaseConnection() {
 	const socket = io();
 
 	socket.on('connect', () => {
-		throw new Error('Maow error!');
 		console.log(`Connected socket: ${socketCounter}`);
 	});
 

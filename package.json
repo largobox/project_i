@@ -12,10 +12,5 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.15",
-    "webpack": "^5.64.4",
-    "webpack-cli": "^4.9.1"
-  },
-  "dependencies": {
-    "socket.io": "^2.1.0"
   }
 }
